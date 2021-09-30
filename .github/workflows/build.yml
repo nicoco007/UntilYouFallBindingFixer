@@ -1,0 +1,32 @@
+name: Build
+
+on:
+- push
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Install .NET 5 SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.x'
+
+      - name: Fetch Until You Fall Bindings
+        uses: actions/checkout@v2
+        with:
+          repository: nicoco007/UntilYouFallBindings
+          token: ${{ secrets.PRIVATE_GITHUB_TOKEN }}
+          path: UntilYouFallBindings
+
+      - name: Build
+        run: dotnet build -c Release -p:GameDir=${{ github.workspace }}\UntilYouFallBindings BindingFixer\BindingFixer.csproj
+        
+      - name: Upload
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: BindingFixer
+          path: BindingFixer\bin\Release\net472\BindingFixer.dll

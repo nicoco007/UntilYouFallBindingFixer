@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\UntilYouFall</GameDir>
+    <SteamExe>C:\Program Files (x86)\Steam\steam.exe</SteamExe>
+  </PropertyGroup>
+
+  <Target Name="CopyToPluginsFolder" AfterTargets="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(GameDir)\Mods" />
+  </Target>
+
+  <ItemGroup>
+    <None Include="BindingFixer.csproj.user" Condition="Exists('BindingFixer.csproj.user')" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameDir)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(GameDir)\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>$(GameDir)\MelonLoader\MelonLoader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SG.XR">
+      <HintPath>$(GameDir)\MelonLoader\Managed\SG.XR.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SG.XR.OpenVR">
+      <HintPath>$(GameDir)\MelonLoader\Managed\SG.XR.OpenVR.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SteamVR">
+      <HintPath>$(GameDir)\MelonLoader\Managed\SteamVR.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnhollowerBaseLib">
+      <HintPath>$(GameDir)\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameDir)\MelonLoader\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameDir)\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
